@@ -31,6 +31,33 @@ public:
 
 		QChartView* chart_view = new QChartView(g_chart);
 		charts_layout->addWidget(chart_view, 0, 0);
+
+		set_validators();
+	}
+
+	void
+	set_validators()
+	{
+		edit_n->setValidator(new QIntValidator(2, 65535));
+		edit_x_1->setValidator(new QDoubleValidator(1e-12, 1.0, 12));
+		edit_h->setValidator(new QDoubleValidator(1e-12, 1.0, 12));
+		edit_t_end->setValidator(new QDoubleValidator(0.0, 100.0, 2));
+		edit_tau->setValidator(new QDoubleValidator(1e-12, 1.0, 12));
+
+		edit_A_k->setValidator(new QDoubleValidator(-1e20, 1e20, 20));
+		edit_E_a->setValidator(new QDoubleValidator(-1e20, 1e20, 20));
+		edit_G_t->setValidator(new QDoubleValidator(-1e20, 1e20, 20));
+		edit_C_pt->setValidator(new QDoubleValidator(0, 1e4, 2));
+		edit_T_s0->setValidator(new QDoubleValidator(0, 1e4, 2));
+		edit_T_s->setValidator(new QDoubleValidator(0, 1e4, 2));
+		edit_T_max->setValidator(new QDoubleValidator(0, 1e4, 2));
+		edit_R_s->setValidator(new QDoubleValidator(0, 1e4, 2));
+		edit_R_max->setValidator(new QDoubleValidator(0, 1e4, 2));
+		edit_lambda->setValidator(new QDoubleValidator(0, 1e3, 6));
+		edit_C_p->setValidator(new QDoubleValidator(0, 1e4, 2));
+		edit_p_k->setValidator(new QDoubleValidator(0, 1e20, 0));
+		edit_q_r->setValidator(new QDoubleValidator(-1e20, 1e20, 6));
+		edit_rho_t->setValidator(new QDoubleValidator(0, 1e4, 2));
 	}
 };
 
