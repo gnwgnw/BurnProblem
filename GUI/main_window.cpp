@@ -12,6 +12,8 @@ MainWindow::MainWindow()
 	ui->setupUi(this);
 	connect_slots();
 
+	read_settings();
+
 	solver->set_emit_period(100000);
 }
 
@@ -60,6 +62,13 @@ void
 MainWindow::update_u(qreal u)
 {
 	ui->edit_u->setText(QString::number(u));
+}
+
+void
+MainWindow::closeEvent(QCloseEvent* event)
+{
+	write_settings();
+	QWidget::closeEvent(event);
 }
 
 void
@@ -117,4 +126,76 @@ MainWindow::connect_responding_field(S* sender, Func1 signal, V1& value)
 				sender->setText(QString::number(value));
 			}
 	);
+}
+
+void
+MainWindow::write_settings()
+{
+	QSettings settings("tsv", "BurnProblem");
+
+	auto save = [&settings](const QLineEdit* line_edit) {
+		const QString value = line_edit->text();
+		if (!value.isEmpty()) {
+			settings.setValue(line_edit->objectName(), value);
+		}
+	};
+
+	settings.beginGroup("controls/grid");
+	save(ui->edit_n);
+	save(ui->edit_x_1);
+	save(ui->edit_t_end);
+	save(ui->edit_tau);
+	settings.endGroup();
+
+	settings.beginGroup("controls/params");
+	save(ui->edit_A_k);
+	save(ui->edit_E_a);
+	save(ui->edit_G_t);
+	save(ui->edit_C_pt);
+	save(ui->edit_T_s0);
+	save(ui->edit_T_s);
+	save(ui->edit_T_max);
+	save(ui->edit_R_s);
+	save(ui->edit_R_max);
+	save(ui->edit_lambda);
+	save(ui->edit_C_p);
+	save(ui->edit_p_k);
+	save(ui->edit_q_r);
+	save(ui->edit_rho_t);
+	settings.endGroup();
+}
+
+void
+MainWindow::read_settings()
+{
+	QSettings settings("tsv", "BurnProblem");
+
+	auto restore = [&settings](QLineEdit* line_edit, const QString& default_val) {
+		line_edit->setText(settings.value(line_edit->objectName(), default_val).toString());
+		line_edit->editingFinished();
+	};
+
+	settings.beginGroup("controls/grid");
+	restore(ui->edit_n, "4096");
+	restore(ui->edit_x_1, "1e-2");
+	restore(ui->edit_t_end, "1");
+	restore(ui->edit_tau, "1e-8");
+	settings.endGroup();
+
+	settings.beginGroup("controls/params");
+	restore(ui->edit_A_k, "1e9");
+	restore(ui->edit_E_a, "4.2e6");
+	restore(ui->edit_G_t, "0");
+	restore(ui->edit_C_pt, "1464");
+	restore(ui->edit_T_s0, "300");
+	restore(ui->edit_T_s, "720");
+	restore(ui->edit_T_max, "2372");
+	restore(ui->edit_R_s, "250");
+	restore(ui->edit_R_max, "363");
+	restore(ui->edit_lambda, "0.23");
+	restore(ui->edit_C_p, "1800");
+	restore(ui->edit_p_k, "1e6");
+	restore(ui->edit_q_r, "0");
+	restore(ui->edit_rho_t, "1600");
+	settings.endGroup();
 }

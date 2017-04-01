@@ -33,6 +33,10 @@ public slots:
 	void
 	update_u(qreal u);
 
+protected:
+	void
+	closeEvent(QCloseEvent* event) override;
+
 private:
 	Ui::MainWindow* ui;
 	Solver* solver;
@@ -47,6 +51,12 @@ private:
 	template<typename S, typename Func1, typename V1>
 	void
 	connect_responding_field(S* sender, Func1 signal, V1& value);
+
+	void
+	write_settings();
+
+	void
+	read_settings();
 };
 
 #endif //BURNPROBLEM_MAIN_WINDOW_HPP
