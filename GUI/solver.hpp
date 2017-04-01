@@ -40,6 +40,9 @@ signals:
 	send_data(QVector<QPointF> data);
 
 	void
+	send_u(qreal u);
+
+	void
 	finished();
 
 private:

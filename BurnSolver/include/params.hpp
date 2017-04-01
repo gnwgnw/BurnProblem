@@ -26,8 +26,8 @@ struct Params {
 	CoercedParams
 	coerced_params();
 
-	float
-	u(float dg0);
+	double
+	u(double dg0);
 
 private:
 	float

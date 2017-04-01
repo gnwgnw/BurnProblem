@@ -79,4 +79,11 @@ Solver::send()
 	}
 
 	emit send_data(data);
+
+	const QPointF& p_0 = data[0];
+	const QPointF& p_1 = data[1];
+	double dg_0 = (p_1.y() - p_0.y()) / (p_1.x() - p_0.x());
+	qreal u = solver->params.u(dg_0);
+
+	emit send_u(u);
 }

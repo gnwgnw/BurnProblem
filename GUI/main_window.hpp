@@ -30,6 +30,9 @@ public slots:
 	void
 	update_g_chart(QVector<QPointF> points);
 
+	void
+	update_u(qreal u);
+
 private:
 	Ui::MainWindow* ui;
 	Solver* solver;

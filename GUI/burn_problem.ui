@@ -448,6 +448,22 @@
          </widget>
         </item>
         <item>
+         <widget class="QWidget" name="info_widget" native="true">
+          <layout class="QGridLayout" name="info_layout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>u, м/с</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineEdit_u"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
          <widget class="QWidget" name="buttons_widget" native="true">
           <layout class="QGridLayout" name="buttons_layout">
            <property name="leftMargin">

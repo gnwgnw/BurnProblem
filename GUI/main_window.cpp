@@ -57,6 +57,12 @@ MainWindow::update_g_chart(QVector<QPointF> points)
 }
 
 void
+MainWindow::update_u(qreal u)
+{
+	ui->lineEdit_u->setText(QString::number(u));
+}
+
+void
 MainWindow::connect_slots()
 {
 	auto& s = solver->solver;
@@ -86,6 +92,7 @@ MainWindow::connect_slots()
 	connect(ui->button_run, &QPushButton::released, this, &MainWindow::start);
 
 	connect(solver, &Solver::send_data, this, &MainWindow::update_g_chart);
+	connect(solver, &Solver::send_u, this, &MainWindow::update_u);
 }
 
 template<typename S, typename Func1, typename V1>

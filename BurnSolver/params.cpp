@@ -12,8 +12,8 @@ Params::coerced_params()
 	};
 }
 
-float
-Params::u(float dg0)
+double
+Params::u(double dg0)
 {
 	return -(B() * dg0 + Q()) / (C() * rho_t);
 }

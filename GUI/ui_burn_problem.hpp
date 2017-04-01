@@ -18,6 +18,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
@@ -83,6 +84,10 @@ public:
     QDoubleSpinBox *doubleSpinBox_h;
     QDoubleSpinBox *doubleSpinBox_t_end;
     QDoubleSpinBox *doubleSpinBox_tau;
+    QWidget *info_widget;
+    QGridLayout *info_layout;
+    QLabel *label_3;
+    QLineEdit *lineEdit_u;
     QWidget *buttons_widget;
     QGridLayout *buttons_layout;
     QPushButton *button_run;
@@ -384,6 +389,23 @@ public:
 
         controls_layout->addWidget(params_tab_widget);
 
+        info_widget = new QWidget(controls_widget);
+        info_widget->setObjectName(QStringLiteral("info_widget"));
+        info_layout = new QGridLayout(info_widget);
+        info_layout->setObjectName(QStringLiteral("info_layout"));
+        label_3 = new QLabel(info_widget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        info_layout->addWidget(label_3, 0, 0, 1, 1);
+
+        lineEdit_u = new QLineEdit(info_widget);
+        lineEdit_u->setObjectName(QStringLiteral("lineEdit_u"));
+
+        info_layout->addWidget(lineEdit_u, 0, 1, 1, 1);
+
+
+        controls_layout->addWidget(info_widget);
+
         buttons_widget = new QWidget(controls_widget);
         buttons_widget->setObjectName(QStringLiteral("buttons_widget"));
         buttons_layout = new QGridLayout(buttons_widget);
@@ -436,6 +458,7 @@ public:
         label_27->setText(QApplication::translate("PartialWindow", "<html><head/><body><p>t<span style=\" vertical-align:sub;\">end</span>, \321\201</p></body></html>", Q_NULLPTR));
         label_28->setText(QApplication::translate("PartialWindow", "tau, \321\201", Q_NULLPTR));
         params_tab_widget->setTabText(params_tab_widget->indexOf(grids_tab), QApplication::translate("PartialWindow", "\320\241\320\265\321\202\320\272\320\260", Q_NULLPTR));
+        label_3->setText(QApplication::translate("PartialWindow", "u, \320\274/\321\201", Q_NULLPTR));
         button_run->setText(QApplication::translate("PartialWindow", "\320\241\321\202\320\260\321\200\321\202", Q_NULLPTR));
     } // retranslateUi
 
