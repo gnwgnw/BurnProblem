@@ -14,6 +14,7 @@
 class Ui_MainWindow : public Ui::PartialWindow {
 public:
 	QChart* g_chart;
+	QLineSeries* g_series;
 
 	void
 	setupUi(QMainWindow* MainWindow)
@@ -21,10 +22,11 @@ public:
 		Ui::PartialWindow::setupUi(MainWindow);
 
 		g_chart = new QChart();
-		g_chart->addSeries(new QLineSeries());
+		g_series = new QLineSeries();
+		g_chart->addSeries(g_series);
 		g_chart->legend()->hide();
 		g_chart->createDefaultAxes();
-		g_chart->axisX()->setRange(0, 1);
+		g_chart->axisX()->setRange(0, 0.01);
 		g_chart->axisY()->setRange(0, 1);
 
 		QChartView* chart_view = new QChartView(g_chart);

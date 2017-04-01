@@ -1,14 +1,11 @@
-#include "ui_main_form.hpp"
+#include "main_window.hpp"
 
 int
 main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
 
-	QMainWindow main;
-	Ui::MainWindow ui;
-	ui.setupUi(&main);
-
+	MainWindow main;
 	main.show();
 
 	return app.exec();
