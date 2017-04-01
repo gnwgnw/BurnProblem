@@ -33,6 +33,7 @@ public:
 		charts_layout->addWidget(chart_view, 0, 0);
 
 		set_validators();
+		edit_u->setReadOnly(true);
 	}
 
 	void
