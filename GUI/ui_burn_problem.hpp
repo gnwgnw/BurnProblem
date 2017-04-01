@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
@@ -21,7 +20,6 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -56,38 +54,36 @@ public:
     QLabel *label_22;
     QLabel *label_23;
     QLabel *label_24;
-    QDoubleSpinBox *doubleSpinBox_A_k;
-    QDoubleSpinBox *doubleSpinBox_E_a;
-    QDoubleSpinBox *doubleSpinBox_G_t;
-    QDoubleSpinBox *doubleSpinBox_C_pt;
-    QDoubleSpinBox *doubleSpinBox_T_s0;
-    QDoubleSpinBox *doubleSpinBox_T_s;
-    QDoubleSpinBox *doubleSpinBox_T_max;
-    QDoubleSpinBox *doubleSpinBox_R_s;
-    QDoubleSpinBox *doubleSpinBox_R_max;
-    QDoubleSpinBox *doubleSpinBox_lambda;
-    QDoubleSpinBox *doubleSpinBox_C_p;
-    QDoubleSpinBox *doubleSpinBox_p_k;
-    QDoubleSpinBox *doubleSpinBox_q_r;
-    QDoubleSpinBox *doubleSpinBox_rho_t;
+    QLineEdit *edit_A_k;
+    QLineEdit *edit_E_a;
+    QLineEdit *edit_G_t;
+    QLineEdit *edit_C_pt;
+    QLineEdit *edit_T_s0;
+    QLineEdit *edit_T_s;
+    QLineEdit *edit_T_max;
+    QLineEdit *edit_R_s;
+    QLineEdit *edit_R_max;
+    QLineEdit *edit_lambda;
+    QLineEdit *edit_C_p;
+    QLineEdit *edit_p_k;
+    QLineEdit *edit_q_r;
+    QLineEdit *edit_rho_t;
     QWidget *grids_tab;
     QFormLayout *grids_layout;
     QLabel *label_11;
-    QLabel *label_12;
     QLabel *label_25;
     QLabel *label_26;
     QLabel *label_27;
     QLabel *label_28;
-    QSpinBox *spinBox_n;
-    QDoubleSpinBox *doubleSpinBox_x_0;
-    QDoubleSpinBox *doubleSpinBox_x_1;
-    QDoubleSpinBox *doubleSpinBox_h;
-    QDoubleSpinBox *doubleSpinBox_t_end;
-    QDoubleSpinBox *doubleSpinBox_tau;
+    QLineEdit *edit_n;
+    QLineEdit *edit_x_1;
+    QLineEdit *edit_h;
+    QLineEdit *edit_t_end;
+    QLineEdit *edit_tau;
     QWidget *info_widget;
     QGridLayout *info_layout;
     QLabel *label_3;
-    QLineEdit *lineEdit_u;
+    QLineEdit *edit_u;
     QWidget *buttons_widget;
     QGridLayout *buttons_layout;
     QPushButton *button_run;
@@ -189,120 +185,75 @@ public:
 
         params_layout->setWidget(13, QFormLayout::LabelRole, label_24);
 
-        doubleSpinBox_A_k = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_A_k->setObjectName(QStringLiteral("doubleSpinBox_A_k"));
-        doubleSpinBox_A_k->setDecimals(0);
-        doubleSpinBox_A_k->setMinimum(-1e+15);
-        doubleSpinBox_A_k->setMaximum(1e+15);
-        doubleSpinBox_A_k->setValue(1e+9);
+        edit_A_k = new QLineEdit(params_tab);
+        edit_A_k->setObjectName(QStringLiteral("edit_A_k"));
 
-        params_layout->setWidget(0, QFormLayout::FieldRole, doubleSpinBox_A_k);
+        params_layout->setWidget(0, QFormLayout::FieldRole, edit_A_k);
 
-        doubleSpinBox_E_a = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_E_a->setObjectName(QStringLiteral("doubleSpinBox_E_a"));
-        doubleSpinBox_E_a->setDecimals(0);
-        doubleSpinBox_E_a->setMinimum(-1e+10);
-        doubleSpinBox_E_a->setMaximum(1e+11);
-        doubleSpinBox_E_a->setSingleStep(10000);
-        doubleSpinBox_E_a->setValue(4.2e+6);
+        edit_E_a = new QLineEdit(params_tab);
+        edit_E_a->setObjectName(QStringLiteral("edit_E_a"));
 
-        params_layout->setWidget(1, QFormLayout::FieldRole, doubleSpinBox_E_a);
+        params_layout->setWidget(1, QFormLayout::FieldRole, edit_E_a);
 
-        doubleSpinBox_G_t = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_G_t->setObjectName(QStringLiteral("doubleSpinBox_G_t"));
-        doubleSpinBox_G_t->setDecimals(0);
-        doubleSpinBox_G_t->setMinimum(-1e+16);
-        doubleSpinBox_G_t->setMaximum(1e+16);
-        doubleSpinBox_G_t->setSingleStep(1e+6);
+        edit_G_t = new QLineEdit(params_tab);
+        edit_G_t->setObjectName(QStringLiteral("edit_G_t"));
 
-        params_layout->setWidget(2, QFormLayout::FieldRole, doubleSpinBox_G_t);
+        params_layout->setWidget(2, QFormLayout::FieldRole, edit_G_t);
 
-        doubleSpinBox_C_pt = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_C_pt->setObjectName(QStringLiteral("doubleSpinBox_C_pt"));
-        doubleSpinBox_C_pt->setMinimum(-100000);
-        doubleSpinBox_C_pt->setMaximum(100000);
-        doubleSpinBox_C_pt->setSingleStep(100);
-        doubleSpinBox_C_pt->setValue(1464);
+        edit_C_pt = new QLineEdit(params_tab);
+        edit_C_pt->setObjectName(QStringLiteral("edit_C_pt"));
 
-        params_layout->setWidget(3, QFormLayout::FieldRole, doubleSpinBox_C_pt);
+        params_layout->setWidget(3, QFormLayout::FieldRole, edit_C_pt);
 
-        doubleSpinBox_T_s0 = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_T_s0->setObjectName(QStringLiteral("doubleSpinBox_T_s0"));
-        doubleSpinBox_T_s0->setMaximum(10000);
-        doubleSpinBox_T_s0->setSingleStep(10);
-        doubleSpinBox_T_s0->setValue(300);
+        edit_T_s0 = new QLineEdit(params_tab);
+        edit_T_s0->setObjectName(QStringLiteral("edit_T_s0"));
 
-        params_layout->setWidget(4, QFormLayout::FieldRole, doubleSpinBox_T_s0);
+        params_layout->setWidget(4, QFormLayout::FieldRole, edit_T_s0);
 
-        doubleSpinBox_T_s = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_T_s->setObjectName(QStringLiteral("doubleSpinBox_T_s"));
-        doubleSpinBox_T_s->setMaximum(10000);
-        doubleSpinBox_T_s->setSingleStep(10);
-        doubleSpinBox_T_s->setValue(720);
+        edit_T_s = new QLineEdit(params_tab);
+        edit_T_s->setObjectName(QStringLiteral("edit_T_s"));
 
-        params_layout->setWidget(5, QFormLayout::FieldRole, doubleSpinBox_T_s);
+        params_layout->setWidget(5, QFormLayout::FieldRole, edit_T_s);
 
-        doubleSpinBox_T_max = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_T_max->setObjectName(QStringLiteral("doubleSpinBox_T_max"));
-        doubleSpinBox_T_max->setMaximum(10000);
-        doubleSpinBox_T_max->setSingleStep(10);
-        doubleSpinBox_T_max->setValue(2372);
+        edit_T_max = new QLineEdit(params_tab);
+        edit_T_max->setObjectName(QStringLiteral("edit_T_max"));
 
-        params_layout->setWidget(6, QFormLayout::FieldRole, doubleSpinBox_T_max);
+        params_layout->setWidget(6, QFormLayout::FieldRole, edit_T_max);
 
-        doubleSpinBox_R_s = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_R_s->setObjectName(QStringLiteral("doubleSpinBox_R_s"));
-        doubleSpinBox_R_s->setMaximum(10000);
-        doubleSpinBox_R_s->setSingleStep(10);
-        doubleSpinBox_R_s->setValue(250);
+        edit_R_s = new QLineEdit(params_tab);
+        edit_R_s->setObjectName(QStringLiteral("edit_R_s"));
 
-        params_layout->setWidget(7, QFormLayout::FieldRole, doubleSpinBox_R_s);
+        params_layout->setWidget(7, QFormLayout::FieldRole, edit_R_s);
 
-        doubleSpinBox_R_max = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_R_max->setObjectName(QStringLiteral("doubleSpinBox_R_max"));
-        doubleSpinBox_R_max->setMaximum(10000);
-        doubleSpinBox_R_max->setSingleStep(10);
-        doubleSpinBox_R_max->setValue(363);
+        edit_R_max = new QLineEdit(params_tab);
+        edit_R_max->setObjectName(QStringLiteral("edit_R_max"));
 
-        params_layout->setWidget(8, QFormLayout::FieldRole, doubleSpinBox_R_max);
+        params_layout->setWidget(8, QFormLayout::FieldRole, edit_R_max);
 
-        doubleSpinBox_lambda = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_lambda->setObjectName(QStringLiteral("doubleSpinBox_lambda"));
-        doubleSpinBox_lambda->setDecimals(5);
-        doubleSpinBox_lambda->setMaximum(100);
-        doubleSpinBox_lambda->setSingleStep(0.01);
-        doubleSpinBox_lambda->setValue(0.23);
+        edit_lambda = new QLineEdit(params_tab);
+        edit_lambda->setObjectName(QStringLiteral("edit_lambda"));
 
-        params_layout->setWidget(9, QFormLayout::FieldRole, doubleSpinBox_lambda);
+        params_layout->setWidget(9, QFormLayout::FieldRole, edit_lambda);
 
-        doubleSpinBox_C_p = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_C_p->setObjectName(QStringLiteral("doubleSpinBox_C_p"));
-        doubleSpinBox_C_p->setMaximum(10000);
-        doubleSpinBox_C_p->setSingleStep(10);
-        doubleSpinBox_C_p->setValue(1800);
+        edit_C_p = new QLineEdit(params_tab);
+        edit_C_p->setObjectName(QStringLiteral("edit_C_p"));
 
-        params_layout->setWidget(10, QFormLayout::FieldRole, doubleSpinBox_C_p);
+        params_layout->setWidget(10, QFormLayout::FieldRole, edit_C_p);
 
-        doubleSpinBox_p_k = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_p_k->setObjectName(QStringLiteral("doubleSpinBox_p_k"));
-        doubleSpinBox_p_k->setMaximum(1e+10);
-        doubleSpinBox_p_k->setSingleStep(1e+6);
-        doubleSpinBox_p_k->setValue(1e+6);
+        edit_p_k = new QLineEdit(params_tab);
+        edit_p_k->setObjectName(QStringLiteral("edit_p_k"));
 
-        params_layout->setWidget(11, QFormLayout::FieldRole, doubleSpinBox_p_k);
+        params_layout->setWidget(11, QFormLayout::FieldRole, edit_p_k);
 
-        doubleSpinBox_q_r = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_q_r->setObjectName(QStringLiteral("doubleSpinBox_q_r"));
+        edit_q_r = new QLineEdit(params_tab);
+        edit_q_r->setObjectName(QStringLiteral("edit_q_r"));
 
-        params_layout->setWidget(12, QFormLayout::FieldRole, doubleSpinBox_q_r);
+        params_layout->setWidget(12, QFormLayout::FieldRole, edit_q_r);
 
-        doubleSpinBox_rho_t = new QDoubleSpinBox(params_tab);
-        doubleSpinBox_rho_t->setObjectName(QStringLiteral("doubleSpinBox_rho_t"));
-        doubleSpinBox_rho_t->setMaximum(10000);
-        doubleSpinBox_rho_t->setSingleStep(10);
-        doubleSpinBox_rho_t->setValue(1600);
+        edit_rho_t = new QLineEdit(params_tab);
+        edit_rho_t->setObjectName(QStringLiteral("edit_rho_t"));
 
-        params_layout->setWidget(13, QFormLayout::FieldRole, doubleSpinBox_rho_t);
+        params_layout->setWidget(13, QFormLayout::FieldRole, edit_rho_t);
 
         params_tab_widget->addTab(params_tab, QString());
         grids_tab = new QWidget();
@@ -314,76 +265,50 @@ public:
 
         grids_layout->setWidget(0, QFormLayout::LabelRole, label_11);
 
-        label_12 = new QLabel(grids_tab);
-        label_12->setObjectName(QStringLiteral("label_12"));
-
-        grids_layout->setWidget(1, QFormLayout::LabelRole, label_12);
-
         label_25 = new QLabel(grids_tab);
         label_25->setObjectName(QStringLiteral("label_25"));
 
-        grids_layout->setWidget(2, QFormLayout::LabelRole, label_25);
+        grids_layout->setWidget(1, QFormLayout::LabelRole, label_25);
 
         label_26 = new QLabel(grids_tab);
         label_26->setObjectName(QStringLiteral("label_26"));
 
-        grids_layout->setWidget(3, QFormLayout::LabelRole, label_26);
+        grids_layout->setWidget(2, QFormLayout::LabelRole, label_26);
 
         label_27 = new QLabel(grids_tab);
         label_27->setObjectName(QStringLiteral("label_27"));
 
-        grids_layout->setWidget(4, QFormLayout::LabelRole, label_27);
+        grids_layout->setWidget(3, QFormLayout::LabelRole, label_27);
 
         label_28 = new QLabel(grids_tab);
         label_28->setObjectName(QStringLiteral("label_28"));
 
-        grids_layout->setWidget(5, QFormLayout::LabelRole, label_28);
+        grids_layout->setWidget(4, QFormLayout::LabelRole, label_28);
 
-        spinBox_n = new QSpinBox(grids_tab);
-        spinBox_n->setObjectName(QStringLiteral("spinBox_n"));
-        spinBox_n->setMinimum(2);
-        spinBox_n->setMaximum(65536);
-        spinBox_n->setValue(4096);
+        edit_n = new QLineEdit(grids_tab);
+        edit_n->setObjectName(QStringLiteral("edit_n"));
 
-        grids_layout->setWidget(0, QFormLayout::FieldRole, spinBox_n);
+        grids_layout->setWidget(0, QFormLayout::FieldRole, edit_n);
 
-        doubleSpinBox_x_0 = new QDoubleSpinBox(grids_tab);
-        doubleSpinBox_x_0->setObjectName(QStringLiteral("doubleSpinBox_x_0"));
+        edit_x_1 = new QLineEdit(grids_tab);
+        edit_x_1->setObjectName(QStringLiteral("edit_x_1"));
 
-        grids_layout->setWidget(1, QFormLayout::FieldRole, doubleSpinBox_x_0);
+        grids_layout->setWidget(1, QFormLayout::FieldRole, edit_x_1);
 
-        doubleSpinBox_x_1 = new QDoubleSpinBox(grids_tab);
-        doubleSpinBox_x_1->setObjectName(QStringLiteral("doubleSpinBox_x_1"));
-        doubleSpinBox_x_1->setDecimals(6);
-        doubleSpinBox_x_1->setMaximum(1);
-        doubleSpinBox_x_1->setSingleStep(0.001);
-        doubleSpinBox_x_1->setValue(0.01);
+        edit_h = new QLineEdit(grids_tab);
+        edit_h->setObjectName(QStringLiteral("edit_h"));
 
-        grids_layout->setWidget(2, QFormLayout::FieldRole, doubleSpinBox_x_1);
+        grids_layout->setWidget(2, QFormLayout::FieldRole, edit_h);
 
-        doubleSpinBox_h = new QDoubleSpinBox(grids_tab);
-        doubleSpinBox_h->setObjectName(QStringLiteral("doubleSpinBox_h"));
-        doubleSpinBox_h->setDecimals(10);
-        doubleSpinBox_h->setMaximum(1);
-        doubleSpinBox_h->setSingleStep(0.001);
-        doubleSpinBox_h->setValue(1);
+        edit_t_end = new QLineEdit(grids_tab);
+        edit_t_end->setObjectName(QStringLiteral("edit_t_end"));
 
-        grids_layout->setWidget(3, QFormLayout::FieldRole, doubleSpinBox_h);
+        grids_layout->setWidget(3, QFormLayout::FieldRole, edit_t_end);
 
-        doubleSpinBox_t_end = new QDoubleSpinBox(grids_tab);
-        doubleSpinBox_t_end->setObjectName(QStringLiteral("doubleSpinBox_t_end"));
-        doubleSpinBox_t_end->setDecimals(10);
-        doubleSpinBox_t_end->setValue(1);
+        edit_tau = new QLineEdit(grids_tab);
+        edit_tau->setObjectName(QStringLiteral("edit_tau"));
 
-        grids_layout->setWidget(4, QFormLayout::FieldRole, doubleSpinBox_t_end);
-
-        doubleSpinBox_tau = new QDoubleSpinBox(grids_tab);
-        doubleSpinBox_tau->setObjectName(QStringLiteral("doubleSpinBox_tau"));
-        doubleSpinBox_tau->setDecimals(10);
-        doubleSpinBox_tau->setSingleStep(0.001);
-        doubleSpinBox_tau->setValue(1e-6);
-
-        grids_layout->setWidget(5, QFormLayout::FieldRole, doubleSpinBox_tau);
+        grids_layout->setWidget(4, QFormLayout::FieldRole, edit_tau);
 
         params_tab_widget->addTab(grids_tab, QString());
 
@@ -398,10 +323,10 @@ public:
 
         info_layout->addWidget(label_3, 0, 0, 1, 1);
 
-        lineEdit_u = new QLineEdit(info_widget);
-        lineEdit_u->setObjectName(QStringLiteral("lineEdit_u"));
+        edit_u = new QLineEdit(info_widget);
+        edit_u->setObjectName(QStringLiteral("edit_u"));
 
-        info_layout->addWidget(lineEdit_u, 0, 1, 1, 1);
+        info_layout->addWidget(edit_u, 0, 1, 1, 1);
 
 
         controls_layout->addWidget(info_widget);
@@ -452,7 +377,6 @@ public:
         label_24->setText(QApplication::translate("PartialWindow", "<html><head/><body><p>rho<span style=\" vertical-align:sub;\">T</span></p></body></html>", Q_NULLPTR));
         params_tab_widget->setTabText(params_tab_widget->indexOf(params_tab), QApplication::translate("PartialWindow", "\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213", Q_NULLPTR));
         label_11->setText(QApplication::translate("PartialWindow", "n", Q_NULLPTR));
-        label_12->setText(QApplication::translate("PartialWindow", "<html><head/><body><p>x<span style=\" vertical-align:sub;\">0</span>, \320\274</p></body></html>", Q_NULLPTR));
         label_25->setText(QApplication::translate("PartialWindow", "<html><head/><body><p>x1, \320\274</p></body></html>", Q_NULLPTR));
         label_26->setText(QApplication::translate("PartialWindow", "<html><head/><body><p>h, \320\274</p></body></html>", Q_NULLPTR));
         label_27->setText(QApplication::translate("PartialWindow", "<html><head/><body><p>t<span style=\" vertical-align:sub;\">end</span>, \321\201</p></body></html>", Q_NULLPTR));

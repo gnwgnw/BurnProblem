@@ -59,7 +59,7 @@ MainWindow::update_g_chart(QVector<QPointF> points)
 void
 MainWindow::update_u(qreal u)
 {
-	ui->lineEdit_u->setText(QString::number(u));
+	ui->edit_u->setText(QString::number(u));
 }
 
 void
@@ -67,27 +67,27 @@ MainWindow::connect_slots()
 {
 	auto& s = solver->solver;
 
-	connect_responding_field(ui->spinBox_n, qOverload<int>(&QSpinBox::valueChanged), s->get_n());
-	connect_responding_field(ui->doubleSpinBox_h, qOverload<double>(&QDoubleSpinBox::valueChanged), s->get_h());
+	connect_responding_field(ui->edit_n, &QLineEdit::editingFinished, s->get_n());
+	connect_responding_field(ui->edit_h, &QLineEdit::editingFinished, s->get_h());
 
-	connect_field(ui->doubleSpinBox_x_1, qOverload<double>(&QDoubleSpinBox::valueChanged), s->get_x_1());
-	connect_field(ui->doubleSpinBox_t_end, qOverload<double>(&QDoubleSpinBox::valueChanged), s->get_t_end());
-	connect_field(ui->doubleSpinBox_tau, qOverload<double>(&QDoubleSpinBox::valueChanged), s->get_tau());
+	connect_field(ui->edit_x_1, &QLineEdit::editingFinished, s->get_x_1());
+	connect_field(ui->edit_t_end, &QLineEdit::editingFinished, s->get_t_end());
+	connect_field(ui->edit_tau, &QLineEdit::editingFinished, s->get_tau());
 
-	connect_field(ui->doubleSpinBox_A_k, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.A_k);
-	connect_field(ui->doubleSpinBox_E_a, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.E_a);
-	connect_field(ui->doubleSpinBox_G_t, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.G_t);
-	connect_field(ui->doubleSpinBox_C_pt, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.C_pt);
-	connect_field(ui->doubleSpinBox_T_s0, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.T_s0);
-	connect_field(ui->doubleSpinBox_T_s, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.T_s);
-	connect_field(ui->doubleSpinBox_T_max, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.T_max);
-	connect_field(ui->doubleSpinBox_R_s, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.R_s);
-	connect_field(ui->doubleSpinBox_R_max, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.R_max);
-	connect_field(ui->doubleSpinBox_lambda, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.lambda);
-	connect_field(ui->doubleSpinBox_C_p, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.C_p);
-	connect_field(ui->doubleSpinBox_p_k, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.p_k);
-	connect_field(ui->doubleSpinBox_q_r, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.q_r);
-	connect_field(ui->doubleSpinBox_rho_t, qOverload<double>(&QDoubleSpinBox::valueChanged), s->params.rho_t);
+	connect_field(ui->edit_A_k, &QLineEdit::editingFinished, s->params.A_k);
+	connect_field(ui->edit_E_a, &QLineEdit::editingFinished, s->params.E_a);
+	connect_field(ui->edit_G_t, &QLineEdit::editingFinished, s->params.G_t);
+	connect_field(ui->edit_C_pt, &QLineEdit::editingFinished, s->params.C_pt);
+	connect_field(ui->edit_T_s0, &QLineEdit::editingFinished, s->params.T_s0);
+	connect_field(ui->edit_T_s, &QLineEdit::editingFinished, s->params.T_s);
+	connect_field(ui->edit_T_max, &QLineEdit::editingFinished, s->params.T_max);
+	connect_field(ui->edit_R_s, &QLineEdit::editingFinished, s->params.R_s);
+	connect_field(ui->edit_R_max, &QLineEdit::editingFinished, s->params.R_max);
+	connect_field(ui->edit_lambda, &QLineEdit::editingFinished, s->params.lambda);
+	connect_field(ui->edit_C_p, &QLineEdit::editingFinished, s->params.C_p);
+	connect_field(ui->edit_p_k, &QLineEdit::editingFinished, s->params.p_k);
+	connect_field(ui->edit_q_r, &QLineEdit::editingFinished, s->params.q_r);
+	connect_field(ui->edit_rho_t, &QLineEdit::editingFinished, s->params.rho_t);
 
 	connect(ui->button_run, &QPushButton::released, this, &MainWindow::start);
 
@@ -100,8 +100,9 @@ void
 MainWindow::connect_field(S* sender, Func1 signal, V1& value)
 {
 	connect(sender, signal, this,
-			[this, &value](double val) {
-				value = val;
+			[sender, &value]() {
+				QString text = sender->text();
+				value = text.toDouble();
 			}
 	);
 }
@@ -113,7 +114,7 @@ MainWindow::connect_responding_field(S* sender, Func1 signal, V1& value)
 	connect_field(sender, signal, value);
 	value.connect(
 			[this, sender, &value] {
-				sender->setValue(value);
+				sender->setText(QString::number(value));
 			}
 	);
 }
