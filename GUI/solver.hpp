@@ -9,6 +9,8 @@
 
 #include <QApplication>
 #include <QThread>
+#include <QtCore/QVector>
+#include <QtGui/QtGui>
 
 class Solver : public QObject {
 Q_OBJECT
@@ -31,6 +33,9 @@ public slots:
 	void
 	set_emit_period(size_t period);
 
+	void
+	set_eps_u(qreal eps);
+
 public:
 	BurnSolver* solver;
 
@@ -47,7 +52,10 @@ signals:
 
 private:
 	size_t emit_period;
+	qreal eps_u;
 	bool done;
+
+	qreal u;
 
 	void
 	send();

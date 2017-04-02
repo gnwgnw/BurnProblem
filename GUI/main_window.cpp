@@ -13,8 +13,6 @@ MainWindow::MainWindow()
 
 	read_settings();
 	reset_g();
-
-	solver->set_emit_period(100000);
 }
 
 MainWindow::~MainWindow()
@@ -52,7 +50,6 @@ MainWindow::stop()
 	ui->button_run->setEnabled(true);
 	ui->button_g_reset->setEnabled(true);
 }
-
 
 void
 MainWindow::update_g_chart(QVector<QPointF> points)
@@ -113,6 +110,13 @@ MainWindow::connect_slots()
 	connect_field(ui->edit_t_end, &QLineEdit::editingFinished, s->get_t_end());
 	connect_field(ui->edit_tau, &QLineEdit::editingFinished, s->get_tau());
 
+	connect(ui->edit_update_period, &QLineEdit::editingFinished, this, [this] {
+		solver->set_emit_period(ui->edit_update_period->text().toUInt());
+	});
+	connect(ui->edit_eps_u, &QLineEdit::editingFinished, this, [this] {
+		solver->set_eps_u(ui->edit_eps_u->text().toDouble());
+	});
+
 	connect_field(ui->edit_A_k, &QLineEdit::editingFinished, s->params.A_k);
 	connect_field(ui->edit_E_a, &QLineEdit::editingFinished, s->params.E_a);
 	connect_field(ui->edit_G_t, &QLineEdit::editingFinished, s->params.G_t);
@@ -133,6 +137,7 @@ MainWindow::connect_slots()
 
 	connect(solver, &Solver::send_data, this, &MainWindow::update_g_chart);
 	connect(solver, &Solver::send_u, this, &MainWindow::update_u);
+	connect(solver, &Solver::finished, this, &MainWindow::stop);
 }
 
 template<typename S, typename Func1, typename V1>
@@ -176,6 +181,8 @@ MainWindow::write_settings()
 	save(ui->edit_x_1);
 	save(ui->edit_t_end);
 	save(ui->edit_tau);
+	save(ui->edit_update_period);
+	save(ui->edit_eps_u);
 	settings.endGroup();
 
 	settings.beginGroup("controls/params");
@@ -211,6 +218,8 @@ MainWindow::read_settings()
 	restore(ui->edit_x_1, "1e-2");
 	restore(ui->edit_t_end, "1");
 	restore(ui->edit_tau, "1e-8");
+	restore(ui->edit_update_period, "1e6");
+	restore(ui->edit_eps_u, "1e-8");
 	settings.endGroup();
 
 	settings.beginGroup("controls/params");

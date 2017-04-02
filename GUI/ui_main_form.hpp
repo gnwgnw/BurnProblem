@@ -46,6 +46,8 @@ public:
 		edit_h->setValidator(new QDoubleValidator(1e-12, 1.0, 12));
 		edit_t_end->setValidator(new QDoubleValidator(0.0, 100.0, 2));
 		edit_tau->setValidator(new QDoubleValidator(1e-12, 1.0, 12));
+		edit_update_period->setValidator(new QIntValidator(10000, 100000000));
+		edit_eps_u->setValidator(new QDoubleValidator(0.0, 1.0, 12));
 
 		edit_A_k->setValidator(new QDoubleValidator(-1e20, 1e20, 20));
 		edit_E_a->setValidator(new QDoubleValidator(-1e20, 1e20, 20));
