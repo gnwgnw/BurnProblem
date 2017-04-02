@@ -189,12 +189,18 @@
               </property>
              </widget>
             </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="edit_n"/>
+            </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_25">
               <property name="text">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;x1, м&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="edit_x_1"/>
             </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_26">
@@ -203,12 +209,18 @@
               </property>
              </widget>
             </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="edit_h"/>
+            </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_27">
               <property name="text">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;t&lt;span style=&quot; vertical-align:sub;&quot;&gt;end&lt;/span&gt;, с&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="edit_t_end"/>
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_28">
@@ -217,20 +229,35 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="edit_n"/>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="edit_x_1"/>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="edit_h"/>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="edit_t_end"/>
-            </item>
             <item row="4" column="1">
              <widget class="QLineEdit" name="edit_tau"/>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>Upd</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QLineEdit" name="edit_update_period"/>
+            </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>eps</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="1">
+             <widget class="QLineEdit" name="edit_eps_u"/>
+            </item>
+            <item row="5" column="0" colspan="2">
+             <widget class="Line" name="line">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -271,6 +298,13 @@
             <widget class="QPushButton" name="button_run">
              <property name="text">
               <string>Старт</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="button_g_reset">
+             <property name="text">
+              <string>Сброс</string>
              </property>
             </widget>
            </item>

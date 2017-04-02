@@ -26,10 +26,12 @@ public:
 		g_chart->addSeries(g_series);
 		g_chart->legend()->hide();
 		g_chart->createDefaultAxes();
-		g_chart->axisX()->setRange(0, 0.01);
+		g_chart->axisX()->setRange(0, 0.0005);
 		g_chart->axisY()->setRange(0, 1);
 
 		QChartView* chart_view = new QChartView(g_chart);
+		chart_view->setRenderHint(QPainter::Antialiasing);
+		chart_view->setRubberBand(QChartView::HorizontalRubberBand);
 		charts_layout->addWidget(chart_view, 0, 0);
 
 		set_validators();
@@ -44,6 +46,8 @@ public:
 		edit_h->setValidator(new QDoubleValidator(1e-12, 1.0, 12));
 		edit_t_end->setValidator(new QDoubleValidator(0.0, 100.0, 2));
 		edit_tau->setValidator(new QDoubleValidator(1e-12, 1.0, 12));
+		edit_update_period->setValidator(new QIntValidator(10000, 100000000));
+		edit_eps_u->setValidator(new QDoubleValidator(0.0, 1.0, 12));
 
 		edit_A_k->setValidator(new QDoubleValidator(-1e20, 1e20, 20));
 		edit_E_a->setValidator(new QDoubleValidator(-1e20, 1e20, 20));

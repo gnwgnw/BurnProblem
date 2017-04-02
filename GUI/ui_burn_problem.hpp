@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QFormLayout>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -71,15 +72,20 @@ public:
     QWidget *grids_tab;
     QFormLayout *grids_layout;
     QLabel *label_11;
-    QLabel *label_25;
-    QLabel *label_26;
-    QLabel *label_27;
-    QLabel *label_28;
     QLineEdit *edit_n;
+    QLabel *label_25;
     QLineEdit *edit_x_1;
+    QLabel *label_26;
     QLineEdit *edit_h;
+    QLabel *label_27;
     QLineEdit *edit_t_end;
+    QLabel *label_28;
     QLineEdit *edit_tau;
+    QLabel *label_4;
+    QLineEdit *edit_update_period;
+    QLabel *label_5;
+    QLineEdit *edit_eps_u;
+    QFrame *line;
     QWidget *info_widget;
     QGridLayout *info_layout;
     QLabel *label_3;
@@ -87,6 +93,7 @@ public:
     QWidget *buttons_widget;
     QGridLayout *buttons_layout;
     QPushButton *button_run;
+    QPushButton *button_g_reset;
 
     void setupUi(QMainWindow *PartialWindow)
     {
@@ -265,50 +272,77 @@ public:
 
         grids_layout->setWidget(0, QFormLayout::LabelRole, label_11);
 
-        label_25 = new QLabel(grids_tab);
-        label_25->setObjectName(QStringLiteral("label_25"));
-
-        grids_layout->setWidget(1, QFormLayout::LabelRole, label_25);
-
-        label_26 = new QLabel(grids_tab);
-        label_26->setObjectName(QStringLiteral("label_26"));
-
-        grids_layout->setWidget(2, QFormLayout::LabelRole, label_26);
-
-        label_27 = new QLabel(grids_tab);
-        label_27->setObjectName(QStringLiteral("label_27"));
-
-        grids_layout->setWidget(3, QFormLayout::LabelRole, label_27);
-
-        label_28 = new QLabel(grids_tab);
-        label_28->setObjectName(QStringLiteral("label_28"));
-
-        grids_layout->setWidget(4, QFormLayout::LabelRole, label_28);
-
         edit_n = new QLineEdit(grids_tab);
         edit_n->setObjectName(QStringLiteral("edit_n"));
 
         grids_layout->setWidget(0, QFormLayout::FieldRole, edit_n);
+
+        label_25 = new QLabel(grids_tab);
+        label_25->setObjectName(QStringLiteral("label_25"));
+
+        grids_layout->setWidget(1, QFormLayout::LabelRole, label_25);
 
         edit_x_1 = new QLineEdit(grids_tab);
         edit_x_1->setObjectName(QStringLiteral("edit_x_1"));
 
         grids_layout->setWidget(1, QFormLayout::FieldRole, edit_x_1);
 
+        label_26 = new QLabel(grids_tab);
+        label_26->setObjectName(QStringLiteral("label_26"));
+
+        grids_layout->setWidget(2, QFormLayout::LabelRole, label_26);
+
         edit_h = new QLineEdit(grids_tab);
         edit_h->setObjectName(QStringLiteral("edit_h"));
 
         grids_layout->setWidget(2, QFormLayout::FieldRole, edit_h);
+
+        label_27 = new QLabel(grids_tab);
+        label_27->setObjectName(QStringLiteral("label_27"));
+
+        grids_layout->setWidget(3, QFormLayout::LabelRole, label_27);
 
         edit_t_end = new QLineEdit(grids_tab);
         edit_t_end->setObjectName(QStringLiteral("edit_t_end"));
 
         grids_layout->setWidget(3, QFormLayout::FieldRole, edit_t_end);
 
+        label_28 = new QLabel(grids_tab);
+        label_28->setObjectName(QStringLiteral("label_28"));
+
+        grids_layout->setWidget(4, QFormLayout::LabelRole, label_28);
+
         edit_tau = new QLineEdit(grids_tab);
         edit_tau->setObjectName(QStringLiteral("edit_tau"));
 
         grids_layout->setWidget(4, QFormLayout::FieldRole, edit_tau);
+
+        label_4 = new QLabel(grids_tab);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        grids_layout->setWidget(6, QFormLayout::LabelRole, label_4);
+
+        edit_update_period = new QLineEdit(grids_tab);
+        edit_update_period->setObjectName(QStringLiteral("edit_update_period"));
+
+        grids_layout->setWidget(6, QFormLayout::FieldRole, edit_update_period);
+
+        label_5 = new QLabel(grids_tab);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        grids_layout->setWidget(7, QFormLayout::LabelRole, label_5);
+
+        edit_eps_u = new QLineEdit(grids_tab);
+        edit_eps_u->setObjectName(QStringLiteral("edit_eps_u"));
+
+        grids_layout->setWidget(7, QFormLayout::FieldRole, edit_eps_u);
+
+        line = new QFrame(grids_tab);
+        line->setObjectName(QStringLiteral("line"));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        grids_layout->setWidget(5, QFormLayout::SpanningRole, line);
 
         params_tab_widget->addTab(grids_tab, QString());
 
@@ -340,6 +374,11 @@ public:
         button_run->setObjectName(QStringLiteral("button_run"));
 
         buttons_layout->addWidget(button_run, 0, 0, 1, 1);
+
+        button_g_reset = new QPushButton(buttons_widget);
+        button_g_reset->setObjectName(QStringLiteral("button_g_reset"));
+
+        buttons_layout->addWidget(button_g_reset, 1, 0, 1, 1);
 
 
         controls_layout->addWidget(buttons_widget);
@@ -381,9 +420,12 @@ public:
         label_26->setText(QApplication::translate("PartialWindow", "<html><head/><body><p>h, \320\274</p></body></html>", Q_NULLPTR));
         label_27->setText(QApplication::translate("PartialWindow", "<html><head/><body><p>t<span style=\" vertical-align:sub;\">end</span>, \321\201</p></body></html>", Q_NULLPTR));
         label_28->setText(QApplication::translate("PartialWindow", "tau, \321\201", Q_NULLPTR));
+        label_4->setText(QApplication::translate("PartialWindow", "Upd", Q_NULLPTR));
+        label_5->setText(QApplication::translate("PartialWindow", "eps", Q_NULLPTR));
         params_tab_widget->setTabText(params_tab_widget->indexOf(grids_tab), QApplication::translate("PartialWindow", "\320\241\320\265\321\202\320\272\320\260", Q_NULLPTR));
         label_3->setText(QApplication::translate("PartialWindow", "u, \320\274/\321\201", Q_NULLPTR));
         button_run->setText(QApplication::translate("PartialWindow", "\320\241\321\202\320\260\321\200\321\202", Q_NULLPTR));
+        button_g_reset->setText(QApplication::translate("PartialWindow", "\320\241\320\261\321\200\320\276\321\201", Q_NULLPTR));
     } // retranslateUi
 
 };
