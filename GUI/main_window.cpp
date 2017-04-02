@@ -2,7 +2,6 @@
 // Created by tsv on 22.03.17.
 //
 
-#include <QtWidgets/QDoubleSpinBox>
 #include "main_window.hpp"
 
 MainWindow::MainWindow()
@@ -13,6 +12,7 @@ MainWindow::MainWindow()
 	connect_slots();
 
 	read_settings();
+	reset_g();
 
 	solver->set_emit_period(100000);
 }
@@ -27,6 +27,7 @@ void
 MainWindow::start()
 {
 	ui->params_tab_widget->setDisabled(true);
+	ui->button_g_reset->setDisabled(true);
 	ui->button_run->setDisabled(true);
 	ui->button_run->setText("Стоп");
 	ui->button_run->disconnect();
@@ -49,6 +50,7 @@ MainWindow::stop()
 
 	ui->params_tab_widget->setEnabled(true);
 	ui->button_run->setEnabled(true);
+	ui->button_g_reset->setEnabled(true);
 }
 
 
@@ -62,6 +64,34 @@ void
 MainWindow::update_u(qreal u)
 {
 	ui->edit_u->setText(QString::number(u));
+}
+
+void
+MainWindow::reset_g()
+{
+	auto y = vector<float>(solver->solver->get_n(), 1.0f);
+	y[0] = 0.0f;
+	solver->solver->set_y(y);
+
+	QVector<QPointF> data;
+	auto x = solver->solver->get_x();
+
+	size_t size = y.size();
+	for (auto i = 0; i < size; ++i) {
+		data.append({x[i], y[i]});
+	}
+
+	update_g_chart(data);
+}
+
+void
+MainWindow::on_reset_button()
+{
+	auto reply = QMessageBox::question(this, "Подтвердить сброс", "Сбросить g к начальному приближению?",
+									   QMessageBox::Yes | QMessageBox::No);
+	if (reply == QMessageBox::Yes) {
+		reset_g();
+	}
 }
 
 void
@@ -99,6 +129,7 @@ MainWindow::connect_slots()
 	connect_field(ui->edit_rho_t, &QLineEdit::editingFinished, s->params.rho_t);
 
 	connect(ui->button_run, &QPushButton::released, this, &MainWindow::start);
+	connect(ui->button_g_reset, &QPushButton::released, this, &MainWindow::on_reset_button);
 
 	connect(solver, &Solver::send_data, this, &MainWindow::update_g_chart);
 	connect(solver, &Solver::send_u, this, &MainWindow::update_u);

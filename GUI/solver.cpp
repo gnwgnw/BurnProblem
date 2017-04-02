@@ -30,6 +30,8 @@ Solver::start()
 	connect(this, &Solver::finished, thread, &QThread::quit);
 	connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
+	done = false;
+
 	thread->start();
 }
 
@@ -49,7 +51,6 @@ Solver::work()
 	}
 
 	send();
-	done = false;
 	moveToThread(QApplication::instance()->thread());
 	emit finished();
 }

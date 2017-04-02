@@ -33,6 +33,12 @@ public slots:
 	void
 	update_u(qreal u);
 
+	void
+	reset_g();
+
+	void
+	on_reset_button();
+
 protected:
 	void
 	closeEvent(QCloseEvent* event) override;

@@ -87,6 +87,7 @@ public:
     QWidget *buttons_widget;
     QGridLayout *buttons_layout;
     QPushButton *button_run;
+    QPushButton *button_g_reset;
 
     void setupUi(QMainWindow *PartialWindow)
     {
@@ -341,6 +342,11 @@ public:
 
         buttons_layout->addWidget(button_run, 0, 0, 1, 1);
 
+        button_g_reset = new QPushButton(buttons_widget);
+        button_g_reset->setObjectName(QStringLiteral("button_g_reset"));
+
+        buttons_layout->addWidget(button_g_reset, 1, 0, 1, 1);
+
 
         controls_layout->addWidget(buttons_widget);
 
@@ -384,6 +390,7 @@ public:
         params_tab_widget->setTabText(params_tab_widget->indexOf(grids_tab), QApplication::translate("PartialWindow", "\320\241\320\265\321\202\320\272\320\260", Q_NULLPTR));
         label_3->setText(QApplication::translate("PartialWindow", "u, \320\274/\321\201", Q_NULLPTR));
         button_run->setText(QApplication::translate("PartialWindow", "\320\241\321\202\320\260\321\200\321\202", Q_NULLPTR));
+        button_g_reset->setText(QApplication::translate("PartialWindow", "\320\241\320\261\321\200\320\276\321\201", Q_NULLPTR));
     } // retranslateUi
 
 };
