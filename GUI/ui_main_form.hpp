@@ -26,10 +26,12 @@ public:
 		g_chart->addSeries(g_series);
 		g_chart->legend()->hide();
 		g_chart->createDefaultAxes();
-		g_chart->axisX()->setRange(0, 0.01);
+		g_chart->axisX()->setRange(0, 0.0005);
 		g_chart->axisY()->setRange(0, 1);
 
 		QChartView* chart_view = new QChartView(g_chart);
+		chart_view->setRenderHint(QPainter::Antialiasing);
+		chart_view->setRubberBand(QChartView::HorizontalRubberBand);
 		charts_layout->addWidget(chart_view, 0, 0);
 
 		set_validators();
